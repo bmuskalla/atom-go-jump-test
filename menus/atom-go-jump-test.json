@@ -1,0 +1,26 @@
+{
+  "context-menu": {
+    "atom-text-editor": [
+      {
+        "label": "Jump to Test",
+        "command": "atom-go-jump-test:jump"
+      }
+    ]
+  },
+  "menu": [
+    {
+      "label": "Packages",
+      "submenu": [
+        {
+          "label": "Go",
+          "submenu": [
+            {
+              "label": "Jump to Test",
+              "command": "atom-go-jump-test:jump"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -25,5 +25,8 @@
     "atom": ">=1.12.7 <2.0.0",
     "node": ">= 6"
   },
-  "author": "Benjamin Muskalla <bmuskalla@tasktop.com> (http://github.com/bmuskalla)"
+  "author": "Benjamin Muskalla <bmuskalla@tasktop.com> (http://github.com/bmuskalla)",
+  "bugs": {
+    "url": "https://github.com/bmuskalla/atom-go-jump-test/issues"
+  },
 }

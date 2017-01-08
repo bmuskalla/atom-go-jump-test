@@ -1,6 +1,6 @@
 # Atom+Go: Jump To Test
 
-[![Build Status](https://travis-ci.org/bmuskalla/atom-go-jump-test.svg?branch=master)](https://travis-ci.org/bmuskalla/atom-go-jump-test)
+[![Build Status](https://travis-ci.org/bmuskalla/atom-go-jump-test.svg?branch=master)](https://travis-ci.org/bmuskalla/atom-go-jump-test) [![Dependency Status](https://david-dm.org/bmuskalla/atom-go-jump-test.svg)](https://david-dm.org/bmuskalla/atom-go-jump-test)
 
 Easily jump between Golang source code and the corresponding test code.
 

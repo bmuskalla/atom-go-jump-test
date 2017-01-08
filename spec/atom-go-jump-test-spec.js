@@ -17,7 +17,9 @@ describe('AtomGoJumpTest', () => {
 
   describe('when the atom-go-jump-test:jump event is triggered', () => {
     it('jumps from a go source file to corresponding go test file', () => {
-      createTestProjectAndOpenEditor("code.go")
+      projectPath = createTestProject()
+      createBothFiles(projectPath)
+      openEditor(projectPath, "code.go")
 
       runs(() => {
         let editor = atom.workspace.getActiveTextEditor()
@@ -37,7 +39,10 @@ describe('AtomGoJumpTest', () => {
     });
 
     it('jumps from a go test file to corresponding go source file', () => {
-      createTestProjectAndOpenEditor("code_test.go")
+      projectPath = createTestProject()
+      createBothFiles(projectPath)
+      openEditor(projectPath, "code_test.go")
+
 
       runs(() => {
         let editor = atom.workspace.getActiveTextEditor()
@@ -55,7 +60,53 @@ describe('AtomGoJumpTest', () => {
       });
 
     });
+
+    it('creates the test file if it doesnt exist', () => {
+      projectPath = createTestProject()
+      createFileInProject(projectPath, "code.go")
+      openEditor(projectPath, "code.go")
+
+      runs(() => {
+        let editor = atom.workspace.getActiveTextEditor()
+        expect(path.basename(editor.getPath())).toEqual("code.go")
+        editor.getGrammar().scopeName = 'source.go'
+
+        atom.commands.dispatch(atom.views.getView(editor), 'atom-go-jump-test:jump')
+      });
+
+      waitForEditorToOpen()
+
+      runs(() => {
+        editor = atom.workspace.getActiveTextEditor()
+        expect(path.basename(editor.getPath())).toEqual("code_test.go")
+      });
+
+    });
+
   });
+
+  it('creates the code file if it doesnt exist', () => {
+    projectPath = createTestProject()
+    createFileInProject(projectPath, "code_test.go")
+    openEditor(projectPath, "code_test.go")
+
+    runs(() => {
+      let editor = atom.workspace.getActiveTextEditor()
+      expect(path.basename(editor.getPath())).toEqual("code_test.go")
+      editor.getGrammar().scopeName = 'source.go'
+
+      atom.commands.dispatch(atom.views.getView(editor), 'atom-go-jump-test:jump')
+    });
+
+    waitForEditorToOpen()
+
+    runs(() => {
+      editor = atom.workspace.getActiveTextEditor()
+      expect(path.basename(editor.getPath())).toEqual("code.go")
+    });
+
+
+});
 
   function waitForEditorToOpen() {
     waitsFor(() => {
@@ -63,15 +114,24 @@ describe('AtomGoJumpTest', () => {
     })
   }
 
-  function createTestProjectAndOpenEditor(filename) {
-    dirPath = temp.mkdirSync('goproject')
-    const goFile = path.join(dirPath, 'code.go')
-    const goTestFile = path.join(dirPath, 'code_test.go')
-    fs.writeFile(goFile, "prod")
-    fs.writeFile(goTestFile, "test")
+  function createTestProject(filename) {
+    return temp.mkdirSync('goproject')
+  }
+
+  function openEditor(projectPath, filename) {
     waitsForPromise(() => {
-      return openFile(path.join(dirPath, filename));
+      return openFile(path.join(projectPath, filename));
     });
+  }
+
+  function createFileInProject(projectPath, filename) {
+    const file = path.join(projectPath, filename)
+    fs.writeFile(file, "contents")
+  }
+
+  function createBothFiles(projectPath) {
+    createFileInProject(projectPath, "code.go")
+    createFileInProject(projectPath, "code_test.go")
   }
 
 });

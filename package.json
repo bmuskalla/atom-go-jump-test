@@ -2,10 +2,11 @@
   "name": "atom-go-jump-test",
   "main": "./lib/atom-go-jump-test",
   "version": "1.0.0",
-  "description": "Seamingly jumps between go test and go code.",
+  "description": "Seamlessly jumps between go test and go code.",
   "keywords": [
     "tests",
     "tdd",
+    "test-driven",
     "jump",
     "go",
     "golang",

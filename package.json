@@ -1,7 +1,7 @@
 {
   "name": "atom-go-jump-test",
   "main": "./lib/atom-go-jump-test",
-  "version": "1.0.0",
+  "version": "0.0.0",
   "description": "Seamlessly jumps between go test and go code.",
   "keywords": [
     "tests",

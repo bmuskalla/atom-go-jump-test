@@ -17,7 +17,8 @@
     "atom-workspace": "atom-go-jump-test:jump"
   },
   "dependencies": {
-    "temp": "^0.8.3"
+    "temp": "^0.8.3",
+    "treeview":"0.210.0"
   },
   "repository": "https://github.com/bmuskalla/atom-go-jump-test",
   "license": "Apache-2.0",

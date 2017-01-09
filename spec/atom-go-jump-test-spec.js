@@ -63,7 +63,7 @@ describe('AtomGoJumpTest', () => {
 
     it('creates the test file if it doesnt exist', () => {
       projectPath = createTestProject()
-      createFileInProject(projectPath, "code.go")
+      createFileInProject(projectPath, "code.go", "package foo")
       openEditor(projectPath, "code.go")
 
       runs(() => {
@@ -79,6 +79,7 @@ describe('AtomGoJumpTest', () => {
       runs(() => {
         editor = atom.workspace.getActiveTextEditor()
         expect(path.basename(editor.getPath())).toEqual("code_test.go")
+        expect(editor.getText()).toEqual("package foo\n\nimport \"testing\"\n\nfunc TestName(t *testing.T) {\n  t.Error(\"Not implemented\")\n}")
       });
 
     });
@@ -87,7 +88,7 @@ describe('AtomGoJumpTest', () => {
 
   it('creates the code file if it doesnt exist', () => {
     projectPath = createTestProject()
-    createFileInProject(projectPath, "code_test.go")
+    createFileInProject(projectPath, "code_test.go","package main")
     openEditor(projectPath, "code_test.go")
 
     runs(() => {
@@ -103,6 +104,7 @@ describe('AtomGoJumpTest', () => {
     runs(() => {
       editor = atom.workspace.getActiveTextEditor()
       expect(path.basename(editor.getPath())).toEqual("code.go")
+      expect(editor.getText()).toEqual("package main")
     });
 
 
@@ -124,9 +126,12 @@ describe('AtomGoJumpTest', () => {
     });
   }
 
-  function createFileInProject(projectPath, filename) {
+  function createFileInProject(projectPath, filename, content) {
     const file = path.join(projectPath, filename)
-    fs.writeFile(file, "contents")
+    if(content == undefined) {
+      content = "contents"
+    }
+    fs.writeFile(file, content)
   }
 
   function createBothFiles(projectPath) {

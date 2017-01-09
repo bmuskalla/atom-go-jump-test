@@ -1,7 +1,7 @@
 {
   "name": "atom-go-jump-test",
   "main": "./lib/atom-go-jump-test",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Seamlessly jumps between go test and go code.",
   "keywords": [
     "tests",
@@ -18,7 +18,7 @@
   },
   "dependencies": {
     "temp": "^0.8.3",
-    "treeview":"0.210.0"
+    "treeview": "0.210.0"
   },
   "repository": "https://github.com/bmuskalla/atom-go-jump-test",
   "license": "Apache-2.0",

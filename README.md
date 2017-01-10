@@ -6,7 +6,7 @@ Easily jump between Golang source code and the corresponding test code.
 
 ## Overview
 
-![image](https://cloud.githubusercontent.com/assets/316929/21828619/c3ea303e-d791-11e6-9232-df1da05bf66c.png)
+![image](https://media.giphy.com/media/26gYK6Cwxwzc5iE5G/giphy.gif)
 
 This package includes the following functionality:
 
